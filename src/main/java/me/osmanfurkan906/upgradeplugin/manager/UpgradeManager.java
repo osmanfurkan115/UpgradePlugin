@@ -44,18 +44,10 @@ public class UpgradeManager {
         if (!user.getPlayer().isPresent()) return false;
         final Player player = user.getPlayer().get();
         final Requirement requirement = upgradeRequirements.get(newLevel);
-        if (player.getStatistic(Statistic.PLAYER_KILLS) >= requirement.getKillUpgradeRequirement().getKillAmount())
-            return true;
-        final ItemStack itemStack = requirement.getCraftUpgradeRequirement().getItemStack();
-        if (player.getInventory().containsAtLeast(itemStack,
-                requirement.getCraftUpgradeRequirement().getAmount())) {
-            itemStack.setAmount(requirement.getCraftUpgradeRequirement().getAmount());
-            player.getInventory().removeItem(itemStack);
-            return true;
-        }
-        if (user.getWalletMoney() >= requirement.getMoneyUpgradeRequirement().getMoneyAmount()) {
-            plugin.getWalletManager().withdrawPlayer(player, requirement.getMoneyUpgradeRequirement().getMoneyAmount());
-            return true;
+        for (UpgradeRequirement upgradeRequirement : requirement.getUpgradeRequirements()) {
+            if (upgradeRequirement.check(player, user)) {
+                return true;
+            }
         }
         return false;
     }
@@ -68,7 +60,7 @@ public class UpgradeManager {
             final String requirementPath = path + "requirements.";
             final Requirement requirement = new Requirement(upgrades.getInt(path + "level"),
                     new KillUpgradeRequirement(upgrades.getInt(requirementPath + "kill")),
-                    new MoneyUpgradeRequirement(upgrades.getInt(requirementPath + "money")),
+                    new MoneyUpgradeRequirement(plugin, upgrades.getInt(requirementPath + "money")),
                     new CraftUpgradeRequirement(null, 1)
             );
             upgradeRequirements.put(upgrades.getInt(path + "level"), requirement);
