@@ -1,0 +1,24 @@
+messages:
+  upgrade: '&eYou upgraded &a%type% &eto &alevel %level%'
+
+forcefield:
+  name: '&cForce Field'
+  type: 'DIAMOND_SWORD'
+
+cloaking:
+  name: '&aCloaking Device'
+  type: 'CLOCK'
+
+scoreboard:
+  title: '&6Player Info'
+  lines:
+    - '&7&l%player%'
+    - ''
+    - '&a&lBalance: &a$%balance%'
+    - '&a&lWallet Size: &a$%wallet_size%'
+    - ''
+    - '&4&lArmor Level: &c%armor_level%'
+    - '&4&lSlot Size: &c%slot_size%'
+    - ''
+    - '&b&lCloak: &b%cloaking_device%'
+    - '&b&lForce Field: &b%forcefield%'
