@@ -34,7 +34,7 @@ items:
       - 'bbb'
       - 'aaa'
     ingredients:
-      a:
+      a: #Only one character
         material: 'IRON_INGOT'
       b:
         material: 'IRON_BLOCK'

@@ -61,6 +61,7 @@ public final class UpgradePlugin extends JavaPlugin {
 
         userManager.loadUsers();
         scoreboardManager.initializeScoreboard();
+        customItemManager.initializeCraftUpgrades();
         upgradeManager.initializeRequirements();
 
         getCommand("upgrade").setExecutor(new UpgradeCommand(this));
