@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         plugin.getCloakingManager().useCloakingDevice(player);
     }
 
-    private void applyJump(Player player) { //TODO test the jump
+    private void applyJump(Player player) {
         if(!plugin.getUserManager().isExist(player)) return;
         plugin.getUserManager().getUser(player).applyJump();
     }

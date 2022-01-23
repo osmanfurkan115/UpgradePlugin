@@ -1,5 +1,6 @@
 package me.osmanfurkan906.upgradeplugin.model;
 
+import lombok.Getter;
 import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.utils.Yaml;
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class UpgradeRecipe {
     private String name;
     private String[] shape;
@@ -30,12 +32,13 @@ public class UpgradeRecipe {
         return this;
     }
 
-    public void register(UpgradePlugin plugin) {
+    public UpgradeRecipe register(UpgradePlugin plugin) {
         if(resultItem == null) throw new IllegalStateException("A problem has occurred while registering the recipe");
         final NamespacedKey namespacedKey = new NamespacedKey(plugin, name);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(namespacedKey, resultItem);
         shapedRecipe.shape(shape);
         ingredients.forEach(shapedRecipe::setIngredient);
         Bukkit.addRecipe(shapedRecipe);
+        return this;
     }
 }
