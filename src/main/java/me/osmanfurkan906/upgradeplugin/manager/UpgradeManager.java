@@ -60,15 +60,10 @@ public class UpgradeManager {
             final Requirement requirement = new Requirement(upgrades.getInt(path + "level"),
                     new KillUpgradeRequirement(upgrades.getInt(requirementPath + "kill")),
                     new MoneyUpgradeRequirement(plugin, upgrades.getInt(requirementPath + "money")),
-                    getCraftUpgradeRequirement(requirementPath + "craft")
+                    plugin.getCustomItemManager().getCraftUpgrades().getOrDefault(upgrades.getString(requirementPath + "craft"),
+                            new CraftUpgradeRequirement(null, 1))
             );
             upgradeRequirements.put(upgrades.getInt(path + "level"), requirement);
         });
-    }
-
-    private CraftUpgradeRequirement getCraftUpgradeRequirement(String craftItem) {
-        final String item = plugin.getUpgrades().getString(craftItem);
-        if(item == null) return new CraftUpgradeRequirement(null, 1);
-
     }
 }
