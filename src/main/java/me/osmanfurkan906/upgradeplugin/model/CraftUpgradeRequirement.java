@@ -17,6 +17,7 @@ public class CraftUpgradeRequirement extends UpgradeRequirement {
 
     @Override
     public boolean check(Player player, User user) {
+        if(itemStack == null) return false;
         if (player.getInventory().containsAtLeast(itemStack, amount)) {
             itemStack.setAmount(amount);
             player.getInventory().removeItem(itemStack);

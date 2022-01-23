@@ -22,6 +22,7 @@ public final class UpgradePlugin extends JavaPlugin {
     private ItemBuilderAPI itemBuilderAPI;
 
     private CloakingManager cloakingManager;
+    private CustomItemManager customItemManager;
     private ForcefieldManager forcefieldManager;
     private InvisibilityManager invisibilityManager;
     private UpgradeManager upgradeManager;
@@ -46,6 +47,7 @@ public final class UpgradePlugin extends JavaPlugin {
         cloakingItem = itemBuilderAPI.getItemBuilder().setAmount(1).setName(getConfig().getString("cloaking.name"))
                 .setType(Material.matchMaterial(getConfig().getString("cloaking.type"))).build();
         cloakingManager = new CloakingManager(this);
+        customItemManager = new CustomItemManager(this);
         forcefieldManager = new ForcefieldManager(this);
         invisibilityManager = new InvisibilityManager();
         upgradeManager = new UpgradeManager(this);

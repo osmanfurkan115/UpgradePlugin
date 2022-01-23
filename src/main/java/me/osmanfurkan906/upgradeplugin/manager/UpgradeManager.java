@@ -5,9 +5,7 @@ import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.*;
 import me.osmanfurkan906.upgradeplugin.utils.Utils;
 import me.osmanfurkan906.upgradeplugin.utils.Yaml;
-import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +51,7 @@ public class UpgradeManager {
     }
 
     public void initializeRequirements() {
+        upgradeRequirements.clear();
         final Yaml upgrades = plugin.getUpgrades();
         if(upgrades.getConfigurationSection("upgrades") == null) return;
         upgrades.getConfigurationSection("upgrades").getKeys(false).forEach(key -> {
@@ -61,9 +60,15 @@ public class UpgradeManager {
             final Requirement requirement = new Requirement(upgrades.getInt(path + "level"),
                     new KillUpgradeRequirement(upgrades.getInt(requirementPath + "kill")),
                     new MoneyUpgradeRequirement(plugin, upgrades.getInt(requirementPath + "money")),
-                    new CraftUpgradeRequirement(null, 1)
+                    getCraftUpgradeRequirement(requirementPath + "craft")
             );
             upgradeRequirements.put(upgrades.getInt(path + "level"), requirement);
         });
+    }
+
+    private CraftUpgradeRequirement getCraftUpgradeRequirement(String craftItem) {
+        final String item = plugin.getUpgrades().getString(craftItem);
+        if(item == null) return new CraftUpgradeRequirement(null, 1);
+
     }
 }
