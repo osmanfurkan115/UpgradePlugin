@@ -4,7 +4,7 @@ import com.hakan.inventoryapi.InventoryAPI;
 import com.hakan.itembuilder.ItemBuilderAPI;
 import lombok.Getter;
 import me.osmanfurkan906.upgradeplugin.command.UpgradeCommand;
-import me.osmanfurkan906.upgradeplugin.command.WalletCommand;
+import me.osmanfurkan906.upgradeplugin.command.EcoCommand;
 import me.osmanfurkan906.upgradeplugin.listener.ForcefieldListener;
 import me.osmanfurkan906.upgradeplugin.listener.PlayerListener;
 import me.osmanfurkan906.upgradeplugin.listener.StorageListener;
@@ -69,7 +69,7 @@ public final class UpgradePlugin extends JavaPlugin {
         upgradeManager.initializeRequirements();
 
         getCommand("upgrade").setExecutor(new UpgradeCommand(this));
-        getCommand("wallet").setExecutor(new WalletCommand(this));
+        getCommand("eco").setExecutor(new EcoCommand(this));
 
         getServer().getPluginManager().registerEvents(new ForcefieldListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);

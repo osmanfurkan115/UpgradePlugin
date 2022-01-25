@@ -5,6 +5,7 @@ import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.EconomyResponse;
 import me.osmanfurkan906.upgradeplugin.model.User;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 @RequiredArgsConstructor
 public class WalletManager {
@@ -25,14 +26,17 @@ public class WalletManager {
     }
 
     private boolean canDeposit(User user, int amount) {
-        return user.getWalletSize() >= getBalance(user.getPlayer().get()) + amount;
+        return user.getWalletSize() >= getBalance(user) + amount;
     }
 
     private boolean canWithdraw(User user, int amount) {
-        return getBalance(user.getPlayer().get()) >= amount;
+        return getBalance(user) >= amount;
     }
 
-    public double getBalance(OfflinePlayer player) {
+    public double getBalance(User user) {
+        final Player player = user.getPlayer().get();
+        final double balance = plugin.getEconomy().getBalance(player);
+        if(balance >= user.getWalletSize()) plugin.getEconomy().withdrawPlayer(player, balance - user.getWalletSize());
         return plugin.getEconomy().getBalance(player);
     }
 }

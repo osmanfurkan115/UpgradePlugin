@@ -17,7 +17,7 @@ public class MoneyUpgradeRequirement extends UpgradeRequirement {
 
     @Override
     public boolean check(Player player, User user) {
-        if (plugin.getWalletManager().getBalance(player) >= moneyAmount) {
+        if (plugin.getWalletManager().getBalance(user) >= moneyAmount) {
             plugin.getWalletManager().withdrawPlayer(player, moneyAmount);
             return true;
         }

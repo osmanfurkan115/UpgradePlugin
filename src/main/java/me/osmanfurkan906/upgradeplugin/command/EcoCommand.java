@@ -12,17 +12,17 @@ import org.bukkit.entity.Player;
 
 
 @RequiredArgsConstructor
-public class WalletCommand implements CommandExecutor {
+public class EcoCommand implements CommandExecutor {
     private final UpgradePlugin plugin;
 
-    @Override // /wallet add player 300
+    @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!sender.isOp()) {
             sender.sendMessage(Utils.colored("&cInsufficient permission"));
             return true;
         }
-        if(args.length != 3 || !(args[0].equals("add") || args[0].equals("remove")) || !isInteger(args[2])) {
-            sender.sendMessage(Utils.colored("&cUsage: /wallet <add/remove> <player> <amount>"));
+        if(args.length != 3 || !(args[0].equals("give") || args[0].equals("take")) || !isInteger(args[2])) {
+            sender.sendMessage(Utils.colored("&cUsage: /eco <give/take> <player> <amount>"));
             return true;
         }
         final Player player = Bukkit.getPlayer(args[1]);
@@ -32,10 +32,10 @@ public class WalletCommand implements CommandExecutor {
         }
         EconomyResponse economyResponse = EconomyResponse.FAILURE;
         switch (args[0]) {
-            case "add":
+            case "give":
                 economyResponse = plugin.getWalletManager().depositPlayer(player, Integer.parseInt(args[2]));
                 break;
-            case "remove":
+            case "take":
                 economyResponse = plugin.getWalletManager().withdrawPlayer(player, Integer.parseInt(args[2]));
                 break;
         }
