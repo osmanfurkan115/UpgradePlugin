@@ -13,22 +13,26 @@ public class WalletManager {
     public EconomyResponse depositPlayer(OfflinePlayer player, int amount) {
         final User user = plugin.getUserManager().getUser(player);
         if(!canDeposit(user, amount)) return EconomyResponse.LIMIT;
-        user.setWalletMoney(user.getWalletMoney() + amount);
+        plugin.getEconomy().depositPlayer(player, amount);
         return EconomyResponse.SUCCESS;
     }
 
     public EconomyResponse withdrawPlayer(OfflinePlayer player, int amount) {
         final User user = plugin.getUserManager().getUser(player);
         if(!canWithdraw(user, amount)) return EconomyResponse.LIMIT;
-        user.setWalletMoney(user.getWalletMoney() - amount);
+        plugin.getEconomy().withdrawPlayer(player, amount);
         return EconomyResponse.SUCCESS;
     }
 
     private boolean canDeposit(User user, int amount) {
-        return user.getWalletSize() >= user.getWalletMoney() + amount;
+        return user.getWalletSize() >= getBalance(user.getPlayer().get()) + amount;
     }
 
     private boolean canWithdraw(User user, int amount) {
-        return user.getWalletMoney() >= amount;
+        return getBalance(user.getPlayer().get()) >= amount;
+    }
+
+    public double getBalance(OfflinePlayer player) {
+        return plugin.getEconomy().getBalance(player);
     }
 }

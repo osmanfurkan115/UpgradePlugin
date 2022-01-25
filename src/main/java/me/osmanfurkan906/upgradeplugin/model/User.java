@@ -17,7 +17,6 @@ import java.util.UUID;
 public class User {
     private final UUID playerUUID;
     private final Map<UpgradeType, Integer> upgrades;
-    @Setter private int walletMoney = 0;
     @Setter private int walletSize = 5000;
     @Setter private int storageSize = 9;
 
@@ -38,7 +37,6 @@ public class User {
         return "User{" +
                 "playerUUID=" + playerUUID +
                 ", upgrades=" + upgrades +
-                ", walletMoney=" + walletMoney +
                 ", walletSize=" + walletSize +
                 ", storageSize=" + storageSize +
                 '}';

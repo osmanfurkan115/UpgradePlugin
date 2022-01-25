@@ -3,6 +3,8 @@ version: '${project.version}'
 main: me.osmanfurkan906.upgradeplugin.UpgradePlugin
 api-version: 1.13
 authors: [ osmanfurkan906 ]
+depend:
+  - Vault
 commands:
   upgrade:
   wallet:

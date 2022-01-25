@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.UpgradeType;
 import me.osmanfurkan906.upgradeplugin.model.User;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -45,7 +44,6 @@ public class UserManager {
             upgrades.put(upgradeType, level);
         });
         final User user = new User(uuid, upgrades);
-        user.setWalletMoney(plugin.getData().getInt("players." + uuid + ".money"));
         user.setStorageSize(plugin.getData().getInt("players." + uuid + ".storage"));
         user.setWalletSize(upgrades.getOrDefault(UpgradeType.WALLET, 0) * 5000 + 5000);
         users.add(user);
@@ -60,7 +58,6 @@ public class UserManager {
     private void saveUser(User user) {
         user.getUpgrades().forEach((key, value) ->
                 plugin.getData().set("players." + user.getPlayerUUID().toString() + ".upgrades." + key.getPath(), value));
-        plugin.getData().set("players." + user.getPlayerUUID().toString() + ".money", user.getWalletMoney());
         plugin.getData().set("players." + user.getPlayerUUID().toString() + ".storage", user.getStorageSize());
 
         plugin.getData().save();

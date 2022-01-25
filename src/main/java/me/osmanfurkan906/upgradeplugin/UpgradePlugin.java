@@ -10,7 +10,9 @@ import me.osmanfurkan906.upgradeplugin.listener.PlayerListener;
 import me.osmanfurkan906.upgradeplugin.listener.StorageListener;
 import me.osmanfurkan906.upgradeplugin.manager.*;
 import me.osmanfurkan906.upgradeplugin.task.ScoreboardTask;
+import me.osmanfurkan906.upgradeplugin.utils.VaultHook;
 import me.osmanfurkan906.upgradeplugin.utils.Yaml;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +22,7 @@ public final class UpgradePlugin extends JavaPlugin {
 
     private InventoryAPI inventoryAPI;
     private ItemBuilderAPI itemBuilderAPI;
+    private Economy economy;
 
     private CloakingManager cloakingManager;
     private CustomItemManager customItemManager;
@@ -42,6 +45,7 @@ public final class UpgradePlugin extends JavaPlugin {
         saveDefaultConfig();
         inventoryAPI = InventoryAPI.getInstance(this);
         itemBuilderAPI = ItemBuilderAPI.getInstance(this);
+        economy = new VaultHook(this).getEconomy();
         forceFieldItem = itemBuilderAPI.getItemBuilder().setAmount(1).setName(getConfig().getString("forcefield.name"))
                 .setType(Material.matchMaterial(getConfig().getString("forcefield.type"))).build();
         cloakingItem = itemBuilderAPI.getItemBuilder().setAmount(1).setName(getConfig().getString("cloaking.name"))
