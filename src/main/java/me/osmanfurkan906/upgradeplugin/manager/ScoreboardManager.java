@@ -35,7 +35,7 @@ public class ScoreboardManager {
     private String replacePlaceholders(Player player, String string) {
         final User user = plugin.getUserManager().getUser(player);
         return string.replace("%player%", player.getName())
-                .replace("%balance%", plugin.getWalletManager().getBalance(player) + "")
+                .replace("%balance%", (int) plugin.getWalletManager().getBalance(player) + "")
                 .replace("%wallet_size%", user.getWalletSize() + "")
                 .replace("%armor_level%", user.getUpgrades().getOrDefault(UpgradeType.ARMOR, 0) + "")
                 .replace("%forcefield%", plugin.getForcefieldManager().getCooldown().getCooldownTime(player) + "")
