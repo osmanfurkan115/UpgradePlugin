@@ -7,6 +7,7 @@ import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.UpgradeType;
 import me.osmanfurkan906.upgradeplugin.model.User;
 import org.bukkit.Bukkit;
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
 import java.util.stream.Collectors;
@@ -30,6 +31,7 @@ public class ScoreboardManager {
 
     public void addToScoreboard(Player player) {
         scoreboard.addPlayer(player);
+        scoreboard.updateScoreboard();
     }
 
     private String replacePlaceholders(Player player, String string) {
@@ -37,6 +39,8 @@ public class ScoreboardManager {
         return string.replace("%player%", player.getName())
                 .replace("%balance%", (int) plugin.getWalletManager().getBalance(user) + "")
                 .replace("%wallet_size%", user.getWalletSize() + "")
+                .replace("%kill%", player.getStatistic(Statistic.PLAYER_KILLS) + "")
+                .replace("%death%", player.getStatistic(Statistic.DEATHS) + "")
                 .replace("%armor_level%", user.getUpgrades().getOrDefault(UpgradeType.ARMOR, 0) + "")
                 .replace("%forcefield%", plugin.getForcefieldManager().getCooldown().getCooldownTime(player) + "")
                 .replace("%cloaking_device%", plugin.getCloakingManager().getCooldown().getCooldownTime(player) + "")
