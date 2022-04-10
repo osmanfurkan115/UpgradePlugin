@@ -2,6 +2,7 @@ package me.osmanfurkan906.upgradeplugin.manager;
 
 import lombok.Getter;
 import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
+import me.osmanfurkan906.upgradeplugin.model.Cooldown;
 import me.osmanfurkan906.upgradeplugin.task.ForcefieldTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -12,13 +13,12 @@ import org.bukkit.entity.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ForcefieldManager extends ManagerCooldown {
+public class ForcefieldManager {
     private final UpgradePlugin plugin;
-    @Getter
-    private final Set<Player> players = new HashSet<>();
+    @Getter private final Set<Player> players = new HashSet<>();
+    @Getter private final Cooldown cooldown = new Cooldown(60);
 
     public ForcefieldManager(UpgradePlugin plugin) {
-        super(60);
         this.plugin = plugin;
     }
 
