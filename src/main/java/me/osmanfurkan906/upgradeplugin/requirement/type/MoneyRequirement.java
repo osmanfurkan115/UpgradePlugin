@@ -8,11 +8,11 @@ import me.osmanfurkan906.upgradeplugin.requirement.UpgradeRequirement;
 import org.bukkit.entity.Player;
 
 @Getter
-public class MoneyUpgradeRequirement extends UpgradeRequirement {
+public class MoneyRequirement extends UpgradeRequirement {
     private final int moneyAmount;
     private final UpgradePlugin plugin;
 
-    public MoneyUpgradeRequirement(UpgradePlugin plugin, int moneyAmount) {
+    public MoneyRequirement(UpgradePlugin plugin, int moneyAmount) {
         super(RequirementType.MONEY);
         this.plugin = plugin;
         this.moneyAmount = moneyAmount;

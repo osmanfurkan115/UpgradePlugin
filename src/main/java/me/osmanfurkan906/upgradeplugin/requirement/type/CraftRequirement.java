@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 @Getter
-public class CraftUpgradeRequirement extends UpgradeRequirement {
+public class CraftRequirement extends UpgradeRequirement {
     private final ItemStack itemStack;
     private final int amount;
 
-    public CraftUpgradeRequirement(ItemStack itemStack, int amount) {
+    public CraftRequirement(ItemStack itemStack, int amount) {
         super(RequirementType.CRAFT);
         this.itemStack = itemStack;
         this.amount = amount;

@@ -8,10 +8,10 @@ import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
 @Getter
-public class KillUpgradeRequirement extends UpgradeRequirement {
+public class KillRequirement extends UpgradeRequirement {
     private final int killAmount;
 
-    public KillUpgradeRequirement(int killAmount) {
+    public KillRequirement(int killAmount) {
         super(RequirementType.KILL);
         this.killAmount = killAmount;
     }

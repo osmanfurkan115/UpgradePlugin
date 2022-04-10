@@ -3,11 +3,11 @@ package me.osmanfurkan906.upgradeplugin.manager;
 import lombok.RequiredArgsConstructor;
 import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.*;
-import me.osmanfurkan906.upgradeplugin.requirement.type.CraftUpgradeRequirement;
-import me.osmanfurkan906.upgradeplugin.requirement.type.MoneyUpgradeRequirement;
+import me.osmanfurkan906.upgradeplugin.requirement.type.CraftRequirement;
+import me.osmanfurkan906.upgradeplugin.requirement.type.MoneyRequirement;
 import me.osmanfurkan906.upgradeplugin.requirement.Requirement;
 import me.osmanfurkan906.upgradeplugin.requirement.UpgradeRequirement;
-import me.osmanfurkan906.upgradeplugin.requirement.type.KillUpgradeRequirement;
+import me.osmanfurkan906.upgradeplugin.requirement.type.KillRequirement;
 import me.osmanfurkan906.upgradeplugin.utils.Utils;
 import me.osmanfurkan906.upgradeplugin.utils.Yaml;
 import org.bukkit.entity.Player;
@@ -63,10 +63,10 @@ public class UpgradeManager {
             final String path = "upgrades." + key + ".";
             final String requirementPath = path + "requirements.";
             final Requirement requirement = new Requirement(upgrades.getInt(path + "level"),
-                    new KillUpgradeRequirement(upgrades.getInt(requirementPath + "kill")),
-                    new MoneyUpgradeRequirement(plugin, upgrades.getInt(requirementPath + "money")),
+                    new KillRequirement(upgrades.getInt(requirementPath + "kill")),
+                    new MoneyRequirement(plugin, upgrades.getInt(requirementPath + "money")),
                     plugin.getCustomItemManager().getCraftUpgrades().getOrDefault(upgrades.getString(requirementPath + "craft"),
-                            new CraftUpgradeRequirement(null, 1))
+                            new CraftRequirement(null, 1))
             );
             upgradeRequirements.put(upgrades.getInt(path + "level"), requirement);
         });
