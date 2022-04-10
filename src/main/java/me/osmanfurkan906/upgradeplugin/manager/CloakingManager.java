@@ -5,6 +5,7 @@ import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.Cooldown;
 import me.osmanfurkan906.upgradeplugin.model.UpgradeType;
 import me.osmanfurkan906.upgradeplugin.model.User;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -28,13 +29,10 @@ public class CloakingManager {
         final int invisibilityTime = 30 + (user.getUpgrades().getOrDefault(UpgradeType.CLOAKING_DEVICE, 0)*30);
         plugin.getInvisibilityManager().useInvisibility(player, true);
         players.add(player);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                plugin.getInvisibilityManager().useInvisibility(player, false);
-                players.remove(player);
-                cooldown.createCooldown(player);
-            }
-        }.runTaskLater(plugin, 20L * invisibilityTime);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            plugin.getInvisibilityManager().useInvisibility(player, false);
+            players.remove(player);
+            cooldown.createCooldown(player);
+        }, 20L * invisibilityTime);
     }
 }

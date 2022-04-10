@@ -7,9 +7,12 @@ import org.bukkit.Material;
 import java.util.Arrays;
 
 public enum UpgradeType {
-    ARMOR("armor", new ArmorUpgrader(), Material.LEATHER_HELMET), CLOAKING_DEVICE("cloaking_device", new CloakingDeviceUpgrader(), Material.CLOCK),
-    FORCEFIELD("forcefield", new ForcefieldUpgrader(), Material.SHIELD), JETPACK("jetpack", new JetpackUpgrader(), Material.LEATHER_BOOTS),
-    STORAGE_SLOT("storage_slot", new StorageSlotUpgrader(), Material.CHEST), WALLET("wallet", new WalletUpgrader(), Material.DIAMOND);
+    ARMOR("armor", new ArmorUpgrader(), Material.LEATHER_HELMET),
+    CLOAKING_DEVICE("cloaking_device", new CloakingDeviceUpgrader(), Material.CLOCK),
+    FORCEFIELD("forcefield", new ForcefieldUpgrader(), Material.SHIELD),
+    JETPACK("jetpack", new JetpackUpgrader(), Material.LEATHER_BOOTS),
+    STORAGE_SLOT("storage_slot", new StorageSlotUpgrader(), Material.CHEST),
+    WALLET("wallet", new WalletUpgrader(), Material.DIAMOND);
 
     UpgradeType(String path, Upgrader upgrader, Material material) {
         this.path = path;
@@ -42,6 +45,9 @@ public enum UpgradeType {
     }
 
     public static UpgradeType fromPath(String path) {
-        return Arrays.stream(values()).filter(upgradeType -> upgradeType.getPath().equalsIgnoreCase(path)).findFirst().get();
+        return Arrays.stream(values())
+                .filter(upgradeType -> upgradeType.getPath().equalsIgnoreCase(path))
+                .findFirst()
+                .get();
     }
 }
