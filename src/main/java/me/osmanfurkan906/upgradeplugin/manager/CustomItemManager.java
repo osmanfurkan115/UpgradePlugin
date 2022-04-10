@@ -3,7 +3,7 @@ package me.osmanfurkan906.upgradeplugin.manager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
-import me.osmanfurkan906.upgradeplugin.model.CraftUpgradeRequirement;
+import me.osmanfurkan906.upgradeplugin.requirement.type.CraftUpgradeRequirement;
 import me.osmanfurkan906.upgradeplugin.model.UpgradeRecipe;
 import me.osmanfurkan906.upgradeplugin.utils.Yaml;
 

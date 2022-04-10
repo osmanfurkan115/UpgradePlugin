@@ -20,7 +20,7 @@ public class UpgradeCommand implements CommandExecutor {
         if(player.isOp()) {
             player.getInventory().addItem(plugin.getForceFieldItem());
             player.getInventory().addItem(plugin.getCloakingItem());
-            player.sendMessage(Utils.colored("&cYou got the items since you are an operator"));
+            player.sendMessage(Utils.colored("&cYou got the items as you are an operator"));
         }
         new UpgradeGUI(plugin).open(player);
         return true;

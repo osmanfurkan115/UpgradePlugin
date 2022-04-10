@@ -1,4 +1,4 @@
-package me.osmanfurkan906.upgradeplugin.model;
+package me.osmanfurkan906.upgradeplugin.requirement;
 
 public enum RequirementType {
     KILL, CRAFT, MONEY

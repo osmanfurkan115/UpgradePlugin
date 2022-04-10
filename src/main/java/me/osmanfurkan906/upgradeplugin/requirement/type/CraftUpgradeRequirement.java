@@ -1,6 +1,9 @@
-package me.osmanfurkan906.upgradeplugin.model;
+package me.osmanfurkan906.upgradeplugin.requirement.type;
 
 import lombok.Getter;
+import me.osmanfurkan906.upgradeplugin.model.User;
+import me.osmanfurkan906.upgradeplugin.requirement.RequirementType;
+import me.osmanfurkan906.upgradeplugin.requirement.UpgradeRequirement;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

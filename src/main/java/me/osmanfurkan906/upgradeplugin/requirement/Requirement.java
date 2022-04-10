@@ -1,6 +1,9 @@
-package me.osmanfurkan906.upgradeplugin.model;
+package me.osmanfurkan906.upgradeplugin.requirement;
 
 import lombok.Getter;
+import me.osmanfurkan906.upgradeplugin.requirement.type.CraftUpgradeRequirement;
+import me.osmanfurkan906.upgradeplugin.requirement.type.KillUpgradeRequirement;
+import me.osmanfurkan906.upgradeplugin.requirement.type.MoneyUpgradeRequirement;
 
 import java.util.ArrayList;
 import java.util.Arrays;

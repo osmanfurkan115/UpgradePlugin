@@ -6,7 +6,6 @@ import me.osmanfurkan906.upgradeplugin.UpgradePlugin;
 import me.osmanfurkan906.upgradeplugin.model.UpgradeType;
 import me.osmanfurkan906.upgradeplugin.model.User;
 import me.osmanfurkan906.upgradeplugin.utils.XMaterial;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -50,7 +49,6 @@ public class UpgradeGUI {
 
             paperSlot += 9;
         }
-
         inventory.open(player);
     }
 }
